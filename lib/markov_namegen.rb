@@ -30,6 +30,7 @@ end
 class MarkovNameGen
   CHAIN_ERROR = 'Chain length must be between 1 and 10.'.freeze
   DATA_ERROR = 'Invalid name data.'.freeze
+  REC_ERROR =  'Name list too small for given chainlength!'.freeze
 
   def initialize(names, chainlength = 2)
     @mdict = MarkovDict.new
@@ -72,11 +73,13 @@ class MarkovNameGen
     namecase(name)
   end
 
-  def new_name(unique: true)
+  def new_name(unique: true, counter: 0)
+    raise REC_ERROR if counter > 500
+
     name = build_name
     return name unless unique
 
-    @source_names.include?(name) ? new_name : name
+    @source_names.include?(name) ? new_name(counter: counter + 1) : name
   end
 
   # Credit: vol7ron @ https://stackoverflow.com/a/28288071/19434324

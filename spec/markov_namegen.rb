@@ -47,6 +47,10 @@ describe MarkovNameGen do
       expect(list.all? { |name| true unless names.include?(name) }).to eql(true)
     end
 
+    it "raises an error if sample size too low for unique names" do
+      expect { MarkovNameGen.new(['Biscuit'], 4).new_name }.to raise_error('Name list too small for given chainlength!')
+    end
+
     it "sometimes outputs names from original data when unique:false" do
       list = []
       100000.times do
