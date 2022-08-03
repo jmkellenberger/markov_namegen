@@ -1,7 +1,7 @@
 # frozen-string-literal: false
 
 # Creates a dictionary with prefixes as keys, and an array of possible suffixes
-# as values, to be used by NameGen class
+# as values, to be used by MarkovNameGen class
 class MarkovDict
   def initialize
     @dict = {}
@@ -23,11 +23,11 @@ end
 #     readability and uniqueness. Note: with a small source list, values of 3 or higher
 #     return names too similar to input
 #
-# To generate a name after creating an instance of NameGen, call #new_name/1
+# To generate a name after creating an instance of MarkovNameGen, call #new_name/1
 # #new_name(unique:) takes a single boolean parameter, defaulted to true.
 #   if true: only output names that are not in the original list
 #   if false: will output names even if they match names in original list
-class NameGen
+class MarkovNameGen
   CHAIN_ERROR = 'Chain length must be between 1 and 10.'.freeze
   DATA_ERROR = 'Invalid name data.'.freeze
 
