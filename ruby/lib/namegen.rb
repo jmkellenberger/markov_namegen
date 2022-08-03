@@ -3,8 +3,6 @@
 # Creates a dictionary with prefixes as keys, and an array of possible suffixes
 # as values, to be used by NameGen class
 class MarkovDict
-  attr_reader :dict
-
   def initialize
     @dict = {}
   end
@@ -30,8 +28,6 @@ end
 #   if true: only output names that are not in the original list
 #   if false: will output names even if they match names in original list
 class NameGen
-  attr_reader :mdict
-
   CHAIN_ERROR = 'Chain length must be between 1 and 10.'.freeze
   DATA_ERROR = 'Invalid name data.'.freeze
 

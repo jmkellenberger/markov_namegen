@@ -8,7 +8,7 @@ names = ['Abarra', 'Guparta', 'Koyo Isu', 'Bozeg', 'Phodai', 'Teraat', 'Qabis',
   'Bhanusri', 'Nasiraat', 'Santhe', 'Sestab','Kano Insu', 'Kusequ', 'Kanoyariya', 
   'Turaatrah', 'Guparahid', 'Joyen Bor']
 
-markov = MarkovName.new(names, 2)
+markov = NameGen.new(names, 2)
 
 25.times do
   puts markov.new_name(unique: true)
