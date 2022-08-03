@@ -7,6 +7,6 @@ Gem::Specification.new do |s|
   s.email       = "jackson@kellenberger.io"
   s.files       = ["lib/markov_namegen.rb"]
   s.homepage    =
-    "https://rubygems.org/gems/markov_namegen"
+    "https://github.com/jmkellenberger/markov_namegen"
   s.license       = "MIT"
 end
