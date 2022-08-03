@@ -20,8 +20,8 @@ end
 # New instances take 2 parameters:
 #   names(array): list of source names
 #   chainlength(num 1-10): determines order of markov chain, defaulted to 2 for best mix of
-#     readability and uniqueness, with a small sample of name, values of 3 or higher
-#     return names too similar to source names.
+#     readability and uniqueness. Note: with a small source list, values of 3 or higher
+#     return names too similar to input
 #
 # To generate a name after creating an instance of NameGen, call #new_name/1
 # #new_name(unique:) takes a single boolean parameter, defaulted to true.
