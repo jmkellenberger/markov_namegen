@@ -39,8 +39,8 @@ class NameGen
   end
 
   def build_dict(names)
-    return CHAIN_ERROR unless @chainlen.between?(1, 10)
-    return DATA_ERROR unless names.instance_of? Array
+    raise CHAIN_ERROR unless @chainlen.between?(1, 10)
+    raise DATA_ERROR unless names.instance_of? Array
 
     names.each do |name|
       name = name.strip
