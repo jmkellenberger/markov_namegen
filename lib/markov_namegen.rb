@@ -65,21 +65,21 @@ class MarkovNameGen
 
     loop do
       suffix = @mdict.fetch_suffix(prefix)
-      return namecase(name) if suffix == "\n" || name.length > 9
+      return name if suffix == "\n" || name.length > 9
 
       name += suffix
       prefix = prefix[1..] + suffix
     end
-    namecase(name)
+    name
   end
 
   def new_name(unique: true, counter: 0)
     raise REC_ERROR if counter > 500
 
     name = build_name
-    return name unless unique
+    return namecase(name) unless unique
 
-    @source_names.include?(name) ? new_name(counter: counter + 1) : name
+    @source_names.include?(name) ? new_name(counter: counter + 1) : namecase(name)
   end
 
   # Credit: vol7ron @ https://stackoverflow.com/a/28288071/19434324

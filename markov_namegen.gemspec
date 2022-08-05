@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = "markov_namegen"
-  s.version     = "0.1.0"
+  s.version     = "0.1.2"
   s.summary     = "A Markov Name Generator"
   s.description = "Uses Markov chains to generate new, similar names from a array of names."
   s.authors     = ["Jack Kellenberger"]
