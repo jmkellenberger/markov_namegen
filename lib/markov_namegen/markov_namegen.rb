@@ -44,13 +44,17 @@ class MarkovNameGen
     raise DATA_ERROR unless names.instance_of? Array
 
     names.each do |name|
-      name = name.strip
-      namelen = name.length
-      @source_names.push(name)
-      str = ' ' * @chainlen + name
-
-      add_keys(str, namelen)
+      add_name_to_dict(name)
     end
+  end
+
+  def add_name_to_dict(name)
+    name = name.strip
+    namelen = name.length
+    @source_names.push(name)
+    str = ' ' * @chainlen + name
+
+    add_keys(str, namelen)
   end
 
   def add_keys(str, namelen)
@@ -61,25 +65,30 @@ class MarkovNameGen
   def build_name
     prefix = ' ' * @chainlen
     name = ''
-    suffix = ''
 
     loop do
       suffix = @mdict.fetch_suffix(prefix)
-      return name if suffix == "\n" || name.length > 9
+      next if suffix == "\n" && name.length < 2
+      break if suffix == "\n" || name.length > 9
 
       name += suffix
       prefix = prefix[1..] + suffix
     end
-    name
+    namecase(name)
   end
 
   def new_name(unique: true, counter: 0)
     raise REC_ERROR if counter > 500
 
     name = build_name
-    return namecase(name) unless unique
 
-    @source_names.include?(name) ? new_name(counter: counter + 1) : namecase(name)
+    case [unique, @source_names.include?(name)]
+    when [true, true] then new_name(counter: counter + 1)
+    when [false, true] then name
+    else
+      add_name_to_dict(name)
+      name
+    end
   end
 
   # Credit: vol7ron @ https://stackoverflow.com/a/28288071/19434324
