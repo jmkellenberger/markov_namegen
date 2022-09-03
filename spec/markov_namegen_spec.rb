@@ -1,4 +1,4 @@
-require "./lib/markov_namegen/markov_namegen"
+require "./lib/markov_namegen"
 
 names = [ 'Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas',
           'California', 'Colorado', 'Connecticut', 'Delaware',
@@ -17,7 +17,7 @@ gen = MarkovNameGen.new(names)
 
 list = []
 
-100000.times do
+1000.times do
   list.push(gen.new_name)
 end
 
